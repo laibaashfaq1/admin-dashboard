@@ -8,7 +8,7 @@ import { urlFor } from "@/sanity/lib/image";
 
 interface Order {
   _id: string;
-  firstName: string;
+  firstname: string;
   lastName: string;
   phone: number;
   email: string;
@@ -141,7 +141,7 @@ export default function AdminDashboard() {
                       onClick={() => toggleOrderDetails(order._id)}
                     >
                       <td className="border p-2">{order._id}</td>
-                      <td className="border p-2">{order.firstName} {order.lastName}</td>
+                      <td className="border p-2">{order.firstname} {order.lastName}</td>
                       <td className="border p-2">{order.address}</td>
                       <td className="border p-2">{new Date(order.orderDate).toLocaleDateString()}</td>
                       <td className="border p-2">${order.total}</td>

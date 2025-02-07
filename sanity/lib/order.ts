@@ -4,7 +4,7 @@ export default {
     title: "Order",
     fields: [
       {
-        name: "firstName",
+        name: "firstname",
         title: "First Name",
         type: "string",
       },
