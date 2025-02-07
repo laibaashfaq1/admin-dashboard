@@ -51,7 +51,7 @@ export default function AdminDashboard() {
         }`
       )
       .then((data) => setOrders(data))
-      .catch((error) => console.log("Error fetching orders", error));
+      .catch(() => console.log("Error fetching orders"));
   }, []);
 
   const filteredOrders = filter === "All" ? orders : orders.filter((order) => order.status === filter);
@@ -77,7 +77,7 @@ export default function AdminDashboard() {
       await client.delete(orderId);
       setOrders((prevOrders) => prevOrders.filter((order) => order._id !== orderId));
       await Swal.fire("Deleted!", "The order has been deleted successfully.", "success");
-    } catch (error) {
+    } catch {
       await Swal.fire("Error!", "Something went wrong while deleting the order.", "error");
     }
   };
@@ -93,7 +93,7 @@ export default function AdminDashboard() {
       if (newStatus === "dispatch") {
         await Swal.fire("Order Dispatched", "Your order has been dispatched", "success");
       }
-    } catch (error) {
+    } catch {
       await Swal.fire("Error", "Failed to change status", "error");
     }
   };
@@ -180,7 +180,7 @@ export default function AdminDashboard() {
                           <h4 className="font-semibold mt-2">Items:</h4>
                           <ul>
                             {order.cartItems.map((item, index) => (
-                              <li key={index} className="flex items-center  gap-2 space-x-4 mt-2">
+                              <li key={index} className="flex items-center gap-2 space-x-4 mt-2">
                                 <Image
                                   src={urlFor(item.image).url()}
                                   alt={item.title}
