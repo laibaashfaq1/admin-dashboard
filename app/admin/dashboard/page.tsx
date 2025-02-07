@@ -1,6 +1,7 @@
 'use client'
 import ProtectedRouter from "@/app/components/protected/page";
 import { client } from "@/sanity/lib/client";
+import React from "react";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
@@ -117,8 +118,42 @@ export default function AdminDashboard() {
             ))}
           </div>
         </nav>
-        
-        <div></div>
+
+        <div className="flex-1 p-6 overflow-y-auto">
+            <h2 className="overflow-y-auto bg-white rounded-lg shadow-sm">
+                Orders
+            </h2>
+            <div>
+                <table>
+                    <tr>
+                        <th>Id</th>
+                        <th>Customer</th>
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </table>
+                <tbody className="divide-y divide-gray-200">
+                    {filteredOrders.map((order)=>(
+                        <React.Fragment
+                        key={order._id}>
+                            <tr 
+                            className="cursor-pointer hover:bg-red-100 transation-all"
+                            onClick={()=>toggleOrderDetails(order._id)}>
+                                <td> {order._id}</td>
+                                <td>{order.firstName}{order.lastName}</td>
+                                <td>{order.address}</td>
+                                <td>{new Date(order.orderDate).toLocaleDateString()}</td>
+                                <td>${order.total}</td>
+                                </tr>
+                                <select></select>
+                                </React.Fragment>
+                    ))}
+                </tbody>
+            </div>
+        </div>
       </div>
     </ProtectedRouter>
   );
